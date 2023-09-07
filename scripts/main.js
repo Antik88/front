@@ -7,19 +7,44 @@ wrappers.forEach(function (wrapper) {
 });
 
 
-let i18Obj = {};
+let i18Obj = {
+  "en": {
+    "skill-text": "High-quality photos in the studio and on the nature",
+    "main_title": "Post",
+    "menu_item_main": "Main",
+    "menu_item_store": "Store",
+    "menu_item_contacts": "Contacts",
+    "menu_item_about": "About",
+    "post_title": "Title",
+    "post_desc": "Lorem ipsum dolor sito amet consectetur adipisicing elit. Ullam temporibus quo, porro obcaecati id nam!",
+    "sidebar_title": "News",
+    "subscribe_btn": "Subscribe"
+  },
+  "ru": {
+    "skill-text": "Фотографии высокого качества в студии и на природе",
+    "main_title": "Посты",
+    "menu_item_main": "Главная",
+    "menu_item_store": "Магазин",
+    "menu_item_contacts": "Контакты",
+    "menu_item_about": "О нас",
+    "post_title": "Заголовок",
+    "post_desc": "Сама компания очень успешная. В любой момент вы будете ослеплены этим!",
+    "sidebar_title": "Новости",
+    "subscribe_btn": "Подписаться"
+  }
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('./data/i18n.json')
-    .then(response => response.json())
-    .then(data => {
-      i18Obj = data;
-      getLocalStorage();
-    })
-    .catch(error => {
-      console.error('Error fetching translation data:', error);
-    });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   fetch('./data/i18n.json')
+//     .then(response => response.json())
+//     .then(data => {
+//       i18Obj = data;
+//       getLocalStorage();
+//     })
+//     .catch(error => {
+//       console.error('Error fetching translation data:', error);
+//     });
+// });
 
 function getTranslate(language) {
   const elements = document.querySelectorAll('[data-i18n]');
