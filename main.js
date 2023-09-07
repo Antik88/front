@@ -1,39 +1,17 @@
 const wrappers = document.querySelectorAll('.wrapper');
 
-wrappers.forEach(function(wrapper) {
-  wrapper.addEventListener('click', function() {
-    console.log('Pressed');
+wrappers.forEach(function (wrapper) {
+  wrapper.addEventListener('click', function () {
     wrapper.classList.toggle('active');
-	getTranslate('ru')
   });
 });
 
-const i18Obj = {
- 'en': {
-    'skill-text': 'High-quality photos in the studio and on the nature',
-    'main_title': 'Post',
-    'menu_item_main': 'Main',
-    'menu_item_store': 'Store',
-    'menu_item_contacts': 'Contacts',
-    'menu_item_about': 'About',
-    'post_title': 'Title',
-    'post_desc': 'Lorem ipsum dolor sito amet consectetur adipisicing elit. Ullam temporibus quo, porro obcaecati id nam!',
-    'sidebal__title': 'News',
-    'subscribe_btn': 'Subscribe',
- },
- 'ru' : {
-    'skill-text': 'Фотографии высокого качества в студии и на природе',
-    'main_title': 'Посты',
-    'menu_item_main': 'Главная',
-    'menu_item_store': 'Магазин',
-    'menu_item_contacts': 'Контакты',
-    'menu_item_about': 'О нас',
-    'post_title': 'Заголовок',
-    'post_desc': 'Сама компания очень успешная. В любой момент вы будете ослеплены этим!',
-    'sidebar_title': 'Новости',
-    'subscribe_btn': 'Подписаться', 
- }
-}
+
+let i18Obj = {};
+
+fetch('i18n.json')
+  .then(response => response.json())
+  .then(data => i18Obj = data);
 
 function getTranslate(language) {
   const elements = document.querySelectorAll('[data-i18n]');
@@ -53,9 +31,11 @@ function toggleLanguage() {
   if (currentLang === 'en') {
     getTranslate('ru');
     currentLang = 'ru';
+    localStorage.setItem('language', 'ru');
   } else {
     getTranslate('en');
     currentLang = 'en';
+    localStorage.setItem('language', 'en');
   }
 }
 
@@ -68,20 +48,59 @@ const root = document.documentElement;
 
 const button = document.querySelector('.color_change');
 
-button.addEventListener('click', function() {
+button.addEventListener('click', function () {
   const root = document.documentElement;
   if (button.textContent === 'light') {
-    root.style.setProperty('--text-color', 'white');
-    root.style.setProperty('--main-color', '#282828');
-    root.style.setProperty('--hover-color', '#642121');
-    root.style.setProperty('--bg-color', 'wheat');
-    root.style.setProperty('--sub-color', '#b63939');
+    setDarkTheme(root);
     button.textContent = 'dark';
+    localStorage.setItem('theme', 'dark');
   } else {
-    root.style.setProperty('--text-color', 'black');
-    root.style.setProperty('--bg-color', '#FCF5E8');
-    root.style.setProperty('--hover-color', '#e2cece');
-    root.style.setProperty('--sub-color', '#e99a94');
+    setLightTheme(root);
     button.textContent = 'light';
+    localStorage.setItem('theme', 'light');
   }
 });
+
+function setDarkTheme(root) {
+  root.style.setProperty('--text-color', 'white');
+  root.style.setProperty('--main-color', '#282828');
+  root.style.setProperty('--hover-color', '#642121');
+  root.style.setProperty('--bg-color', 'wheat');
+  root.style.setProperty('--sub-color', '#b63939');
+}
+
+function setLightTheme(root) {
+  root.style.setProperty('--text-color', 'black');
+  root.style.setProperty('--bg-color', '#FCF5E8');
+  root.style.setProperty('--hover-color', '#e2cece');
+  root.style.setProperty('--sub-color', '#e99a94');
+}
+
+function getLocalStorage() {
+  if (localStorage.getItem('theme') === 'dark') {
+    const root = document.documentElement;
+    setDarkTheme(root);
+    button.textContent = 'dark';
+  } else {
+    const root = document.documentElement;
+    setLightTheme(root);
+    button.textContent = 'light';
+  }
+
+  if (localStorage.getItem('language') === 'ru') {
+    getTranslate('ru');
+    currentLang = 'ru';
+  } else {
+    getTranslate('en');
+    currentLang = 'en';
+  }
+}
+
+window.addEventListener('load', getLocalStorage);
+
+function setLocalStorage() {
+  localStorage.setItem('theme', button.textContent === 'dark' ? 'dark' : 'light');
+  localStorage.setItem('language', currentLang);
+}
+
+window.addEventListener('beforeunload', setLocalStorage);
