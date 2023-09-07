@@ -112,16 +112,20 @@ function setLocalStorage() {
 window.addEventListener('beforeunload', setLocalStorage);
 
 const img_btn = document.querySelector('.img_change_btn');
-const img = document.querySelector('.post_img');
+const img = document.querySelectorAll('.post__img');
 
 let isImg2 = false;
 
 img_btn.addEventListener('click', function() {
   if (isImg2) {
-    img.src = 'images/img1.jpg';
+    img.forEach(function(imgElement) {
+      imgElement.style.backgroundImage = `url('images/main_img_1.png')`;
+    });
     isImg2 = false;
   } else {
-    img.src = 'images/img2.jpg';
+    img.forEach(function(imgElement) {
+      imgElement.style.backgroundImage = `url('images/main_img_2.png')`;
+    });
     isImg2 = true;
   }
 });

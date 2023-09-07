@@ -135,7 +135,7 @@ body {
   height: 240px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background: url('https://media.discordapp.net/attachments/1073260324737781864/1075080708034404363/oluto_neuroweb_photorealistic_cinematic_background_unreal_engin_69045d1e-1a7e-42bf-9bc3-a1b51a4c709d.png')
+  background: url('../images/main_img_1.png')
   center / cover;
 }
 .post__content {
@@ -150,6 +150,10 @@ body {
 }
 .post__desc {
   font-weight: 300;
+}
+.post_img{
+  width: 300px;
+  height: 100px;
 }
 
 @media (max-width: 1200px) {
