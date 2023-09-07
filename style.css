@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
 
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -129,7 +130,7 @@ body {
   height: 240px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background: url('https://media.discordapp.net/attachments/1073260324737781864/1075080708034404363/oluto_neuroweb_photorealistic_cinematic_background_unreal_engin_69045d1e-1a7e-42bf-9bc3-a1b51a4c709d.png') 
+  background: url('https://media.discordapp.net/attachments/1073260324737781864/1075080708034404363/oluto_neuroweb_photorealistic_cinematic_background_unreal_engin_69045d1e-1a7e-42bf-9bc3-a1b51a4c709d.png')
   center / cover;
 }
 .post__content {
