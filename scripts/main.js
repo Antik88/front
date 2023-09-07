@@ -38,10 +38,12 @@ let currentLang = 'en';
 function toggleLanguage() {
   if (currentLang === 'en') {
     getTranslate('ru');
+    lang_btn.textContent = 'ru';
     currentLang = 'ru';
     localStorage.setItem('language', 'ru');
   } else {
     getTranslate('en');
+    lang_btn.textContent = 'en';
     currentLang = 'en';
     localStorage.setItem('language', 'en');
   }
@@ -127,5 +129,18 @@ img_btn.addEventListener('click', function() {
       imgElement.style.backgroundImage = `url('images/main_img_2.png')`;
     });
     isImg2 = true;
+  }
+});
+
+const audioPlayer = document.getElementById('audioPlayer');
+const playButton = document.getElementById('playButton');
+
+playButton.addEventListener('click', function() {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playButton.textContent = 'Pause';
+  } else {
+    audioPlayer.pause();
+    playButton.textContent = 'Play';
   }
 });
