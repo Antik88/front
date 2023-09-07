@@ -60,5 +60,28 @@ function toggleLanguage() {
 }
 
 const lang_btn = document.querySelector('.lang_btn');
-
 lang_btn.addEventListener('click', toggleLanguage);
+
+
+const root = document.documentElement;
+
+
+const button = document.querySelector('.color_change');
+
+button.addEventListener('click', function() {
+  const root = document.documentElement;
+  if (button.textContent === 'light') {
+    root.style.setProperty('--text-color', 'white');
+    root.style.setProperty('--main-color', '#282828');
+    root.style.setProperty('--hover-color', '#642121');
+    root.style.setProperty('--bg-color', 'wheat');
+    root.style.setProperty('--sub-color', '#b63939');
+    button.textContent = 'dark';
+  } else {
+    root.style.setProperty('--text-color', 'black');
+    root.style.setProperty('--bg-color', '#FCF5E8');
+    root.style.setProperty('--hover-color', '#e2cece');
+    root.style.setProperty('--sub-color', '#e99a94');
+    button.textContent = 'light';
+  }
+});
