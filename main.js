@@ -9,16 +9,24 @@ wrappers.forEach(function (wrapper) {
 
 let i18Obj = {};
 
-fetch('i18n.json')
-  .then(response => response.json())
-  .then(data => i18Obj = data);
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('i18n.json')
+    .then(response => response.json())
+    .then(data => {
+      i18Obj = data;
+      getLocalStorage();
+    })
+    .catch(error => {
+      console.error('Error fetching translation data:', error);
+    });
+});
 
 function getTranslate(language) {
   const elements = document.querySelectorAll('[data-i18n]');
 
   elements.forEach(element => {
     const translationKey = element.dataset.i18n;
-    const translation = i18Obj[language][translationKey];
+    const translation = i18Obj && i18Obj[language] && i18Obj[language][translationKey];
     if (translation) {
       element.textContent = translation;
     }
@@ -44,8 +52,6 @@ lang_btn.addEventListener('click', toggleLanguage);
 
 
 const root = document.documentElement;
-
-
 const button = document.querySelector('.color_change');
 
 button.addEventListener('click', function () {
@@ -104,3 +110,18 @@ function setLocalStorage() {
 }
 
 window.addEventListener('beforeunload', setLocalStorage);
+
+const img_btn = document.querySelector('.img_change_btn');
+const img = document.querySelector('.post_img');
+
+let isImg2 = false;
+
+img_btn.addEventListener('click', function() {
+  if (isImg2) {
+    img.src = 'images/img1.jpg';
+    isImg2 = false;
+  } else {
+    img.src = 'images/img2.jpg';
+    isImg2 = true;
+  }
+});
