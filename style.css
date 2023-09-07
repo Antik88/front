@@ -91,6 +91,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 10px; 
+}
+.skills-text{
+  margin-bottom: 2%;
 }
 .subscribe {
   display: grid;
