@@ -10,7 +10,7 @@ wrappers.forEach(function (wrapper) {
 let i18Obj = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('i18n.json')
+  fetch('./data/i18n.json')
     .then(response => response.json())
     .then(data => {
       i18Obj = data;
