@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    font-size: large;
+    color: #fff;
+}
+
+.headerContainer{
+    width: 500px;
+    margin-top: 10px;
+}
+
+.headerContent{
+    margin-top: 0;
+}
