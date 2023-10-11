@@ -1,14 +1,35 @@
-.header{
+.header {
     display: flex;
-    font-size: large;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
     color: #fff;
 }
 
-.headerContainer{
-    width: 500px;
-    margin-top: 10px;
+.header__input {
+    height: 40px;
+    font-size: 20px;
 }
 
-.headerContent{
-    margin-top: 0;
+.header__inputContainer {
+    position: relative;
+}
+
+.header__clearButton {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+}
+
+.header__btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.header__btn:hover{
+    color: burlywood;
 }

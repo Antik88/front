@@ -7,39 +7,26 @@ class MovieList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            results: []
+            page: 1,
+            results: props.results
         };
-    }
-
-    componentDidMount() {
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: process.env.REACT_APP_TOKEN
-            }
-        };
-
-        fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ results: data.results });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
     }
 
     render() {
-        const { results } = this.state;
+        const { results } = this.props;
 
         return (
-            results.length !== 0 ?
-                <div className="container">
-                    {results.map(movie => (
-                        <MovieCard movie={movie} key={movie.id} />
-                    ))}
-                </div>
+            results && results.length !== 0 ?
+                <>
+                    <div className="container">
+                        {results.map(movie => (
+                            <MovieCard movie={movie} key={movie.id} />
+                        ))}
+                    </div>
+                    <button onClick={this.props.load} className='showMore_btn'>
+                        show more
+                    </button>
+                </>
                 :
                 <NoResult />
         );

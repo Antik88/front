@@ -26,10 +26,14 @@
     display: block;
 }
 
-.card_btn{
+.card_btn {
     cursor: pointer;
     width: 100px;
     border: none;
     background: none;
     color: #fff;
+}
+
+.card_btn:hover {
+    color: burlywood;
 }
